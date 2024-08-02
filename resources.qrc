@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/">
+        <file>qml/overlay.qml</file>
+        <file>images/paused-icon.png</file>
+        <file>images/record-icon.png</file>
+        <file>images/obs-recording-overlay-logo.png</file>
+    </qresource>
+</RCC>
