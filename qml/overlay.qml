@@ -1,15 +1,29 @@
 import QtQuick 2.15
 import QtQuick.Controls 2.15
-import Qt.labs.platform 1.1 as Platforms
 
-ApplicationWindow {
+Window {
     visible: true
-    width: 800
-    height: 600
+    width: Screen.width
+    height: Screen.height - 1
     title: "OBS Recording Overlay"
+    flags: Qt.FramelessWindowHint | Qt.WindowStaysOnTopHint | Qt.WindowTransparentForInput
+    color: "transparent"
 
-    Button {
-        text: "Hello world"
-        anchors.centerIn: parent
+    Rectangle {
+        id: overlay
+        width: 40
+        height: 40
+        color: "transparent"
+        anchors.bottom: parent.bottom
+        anchors.left: parent.left
+        anchors.bottomMargin: 10
+        anchors.leftMargin: 10
+        visible: true
+
+        Image {
+            id: statusImage
+            anchors.fill: parent
+            source: "qrc:/images/record-icon.png"
+        }
     }
 }
