@@ -13,6 +13,8 @@ public:
     ~OverlayApp();
 
 private:
+    void setupTrayIcon();
+
     QSystemTrayIcon *trayIcon;
     QMenu *trayIconMenu;
     QAction *exitAction;

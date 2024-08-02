@@ -6,6 +6,13 @@
 OverlayApp::OverlayApp(QWidget *parent)
     : QWidget(parent), trayIcon(new QSystemTrayIcon(this)), trayIconMenu(new QMenu(this))
 {
+    setupTrayIcon();
+}
+
+OverlayApp::~OverlayApp() {}
+
+void OverlayApp::setupTrayIcon()
+{
     exitAction = new QAction("Exit", this);
     connect(exitAction, &QAction::triggered, qApp, &QApplication::quit);
 
@@ -15,5 +22,3 @@ OverlayApp::OverlayApp(QWidget *parent)
     trayIcon->setContextMenu(trayIconMenu);
     trayIcon->show();
 }
-
-OverlayApp::~OverlayApp() {}
