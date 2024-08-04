@@ -13,26 +13,46 @@ find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Quick Widgets)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Quick Widgets)
 
 set(PROJECT_SOURCES
-        main.cpp
-        overlayapp.cpp
-        overlayapp.h
+    main.cpp
+    src/overlayapp.cpp
+    src/overlayapp.h
+    assets/images/obs-recording-overlay-logo.png
+    assets/images/paused-icon.png
+    assets/images/record-icon.png
+)
+
+set(QML
+    # cmake-format: sort
+    qml/Overlay/Overlay.qml
+    themes/Theme.qml
+    qml/main.qml
+)
+
+set(RESOURCES
+    # cmake-format: sort
+    resources/qml.qrc
+    resources/resources.qrc
+    themes/qmldir
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(obs-recording-overlay
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
-        images/paused-icon.png
-        images/record-icon.png
-        images/obs-recording-overlay-logo.png
+
+        ${QML}
+        ${RESOURCES}
     )
 
     qt_add_qml_module(obs-recording-overlay
-        URI obs-recording-overlay
-        RESOURCE_PREFIX /qml/
+        URI
+        obs-recording-overlay
+        RESOURCE_PREFIX
+        /qml
         QML_FILES
-            qml/overlay.qml
-            RESOURCES resources.qrc
+        ${QML}
+        RESOURCES
+        ${RESOURCES}
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET obs-recording-overlay APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR

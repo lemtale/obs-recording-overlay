@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/qml">
+        <file alias="Overlay/Overlay.qml">../qml/Overlay/Overlay.qml</file>
+        <file alias="main.qml">../qml/main.qml</file>
+        <file alias="themes/qmldir">../themes/qmldir</file>
+        <file alias="themes/Theme.qml">../themes/Theme.qml</file>
+    </qresource>
+</RCC>

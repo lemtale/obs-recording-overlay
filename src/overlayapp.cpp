@@ -16,7 +16,7 @@ void OverlayApp::setupTrayIcon()
     exitAction = new QAction("Exit", this);
     connect(exitAction, &QAction::triggered, qApp, &QApplication::quit);
 
-    trayIcon->setIcon(QIcon(":/images/obs-recording-overlay-logo.png"));
+    trayIcon->setIcon(QIcon(":/resources/logo.png"));
     trayIconMenu->addAction(exitAction);
 
     trayIcon->setContextMenu(trayIconMenu);
