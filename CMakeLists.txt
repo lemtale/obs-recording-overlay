@@ -16,6 +16,8 @@ set(PROJECT_SOURCES
     main.cpp
     src/overlayapp.cpp
     src/overlayapp.h
+    src/utilities/thememanager.h
+    src/utilities/thememanager.cpp
     assets/images/obs-recording-overlay-logo.png
     assets/images/paused-icon.png
     assets/images/record-icon.png
@@ -39,7 +41,6 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(obs-recording-overlay
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
-
         ${QML}
         ${RESOURCES}
     )

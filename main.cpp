@@ -8,10 +8,12 @@
 int main(int argc, char *argv[])
 {
     QApplication app(argc, argv);
-    OverlayApp overlayApp;
-    app.setWindowIcon(QIcon(":/resources/logo.png"));
-
     QQmlApplicationEngine engine;
+
+    qmlRegisterSingletonType(QUrl("qrc:/qml/themes/Theme.qml"), "Theme", 1, 0, "Theme");
+
+    OverlayApp overlayApp(&engine);
+    app.setWindowIcon(QIcon(":/resources/logo.png"));
 
     engine.rootContext()->setContextProperty("overlayApp", &overlayApp);
     engine.load(QUrl(QStringLiteral("qrc:/qml/main.qml")));
