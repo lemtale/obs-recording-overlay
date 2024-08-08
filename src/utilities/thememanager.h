@@ -13,6 +13,7 @@ public:
     explicit ThemeManager(QQmlEngine *engine, QObject *parent = nullptr);
 
     QColor getColor(const QString &propertyName) const;
+    int getIntProperty(const QString &propertyName) const;
 
 private:
     QQmlEngine *qmlEngine;

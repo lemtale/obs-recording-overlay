@@ -4,5 +4,7 @@
         <file alias="main.qml">../qml/main.qml</file>
         <file alias="themes/qmldir">../themes/qmldir</file>
         <file alias="themes/Theme.qml">../themes/Theme.qml</file>
+        <file alias="Components/MenuItem.qml">../qml/Components/MenuItem.qml</file>
     </qresource>
+    <qresource prefix="/"/>
 </RCC>

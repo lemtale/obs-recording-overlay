@@ -23,3 +23,17 @@ QColor ThemeManager::getColor(const QString &propertyName) const
 
     return colorVariant.value<QColor>();
 }
+
+int ThemeManager::getIntProperty(const QString &propertyName) const
+{
+    if (!themeObject) {
+        return 0;
+    }
+
+    QVariant intVariant = themeObject->property(propertyName.toUtf8());
+    if (!intVariant.isValid()) {
+        return 0;
+    }
+
+    return intVariant.toInt();
+}

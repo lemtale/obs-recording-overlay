@@ -9,18 +9,25 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Quick Widgets)
-find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Quick Widgets)
+find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Quick Widgets QuickWidgets)
+find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Quick Widgets QuickWidgets)
 
-set(PROJECT_SOURCES
-    main.cpp
-    src/overlayapp.cpp
-    src/overlayapp.h
-    src/utilities/thememanager.h
-    src/utilities/thememanager.cpp
+set(ASSETS
     assets/images/obs-recording-overlay-logo.png
     assets/images/paused-icon.png
     assets/images/record-icon.png
+    assets/icons/power.svg
+    assets/icons/settings-bolt.svg
+)
+
+set(PROJECT_SOURCES
+    main.cpp
+    src/systemtray.cpp
+    src/systemtray.h
+    src/utilities/thememanager.h
+    src/utilities/thememanager.cpp
+    src/core/coloroptionenum.h
+    ${ASSETS}
 )
 
 set(QML
@@ -28,6 +35,7 @@ set(QML
     qml/Overlay/Overlay.qml
     themes/Theme.qml
     qml/main.qml
+    qml/Components/MenuItem.qml
 )
 
 set(RESOURCES
@@ -73,7 +81,12 @@ else()
     endif()
 endif()
 
-target_link_libraries(obs-recording-overlay PRIVATE Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::Quick)
+target_link_libraries(obs-recording-overlay
+    PRIVATE
+    Qt${QT_VERSION_MAJOR}::Widgets
+    Qt${QT_VERSION_MAJOR}::Quick
+    Qt${QT_VERSION_MAJOR}::QuickWidgets
+)
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
 # If you are developing for iOS or macOS you should consider setting an

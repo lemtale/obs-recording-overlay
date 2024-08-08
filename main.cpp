@@ -1,21 +1,25 @@
+#include "src/core/coloroptionenum.h"
 #include <QApplication>
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
 #include <QIcon>
 
-#include <src/overlayapp.h>
+#include <src/systemtray.h>
 
 int main(int argc, char *argv[])
 {
     QApplication app(argc, argv);
     QQmlApplicationEngine engine;
 
+    qmlRegisterSingletonType<ColorOption>("OBSRecordingOverlay", 1, 0, "ColorOption", [](QQmlEngine *, QJSEngine *) -> QObject * {
+        return new ColorOption();
+    });
     qmlRegisterSingletonType(QUrl("qrc:/qml/themes/Theme.qml"), "Theme", 1, 0, "Theme");
 
-    OverlayApp overlayApp(&engine);
+    SystemTray systemTray(&engine);
     app.setWindowIcon(QIcon(":/resources/logo.png"));
 
-    engine.rootContext()->setContextProperty("overlayApp", &overlayApp);
+    engine.rootContext()->setContextProperty("systemTray", &systemTray);
     engine.load(QUrl(QStringLiteral("qrc:/qml/main.qml")));
 
     if (engine.rootObjects().isEmpty())
