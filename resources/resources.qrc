@@ -4,6 +4,6 @@
         <file alias="images/paused.png">../assets/images/paused-icon.png</file>
         <file alias="images/recording.png">../assets/images/record-icon.png</file>
         <file alias="icons/power.svg">../assets/icons/power.svg</file>
-        <file alias="/icons/settings-bolt.svg">../assets/icons/settings-bolt.svg</file>
+        <file alias="icons/settings-bolt.svg">../assets/icons/settings-bolt.svg</file>
     </qresource>
 </RCC>

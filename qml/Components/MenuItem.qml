@@ -14,7 +14,7 @@ Rectangle {
     property string iconSource: ""
     property int colorOption: ColorOption.Default
 
-    signal onClick()
+    signal onClick
 
     states: [
         State {
@@ -93,7 +93,7 @@ Rectangle {
                 id: iconWrapper
                 width: iconWrapper.hasIcon ? Theme.fontSizeMD : 0
                 height: iconWrapper.hasIcon ? Theme.fontSizeMD : 0
-                anchors.verticalCenter: parent.verticalCenter;
+                anchors.verticalCenter: parent.verticalCenter
 
                 Image {
                     id: icon
@@ -108,7 +108,7 @@ Rectangle {
                     id: iconColorOverlay
                     anchors.fill: icon
                     source: icon
-                 }
+                }
             }
 
             Text {

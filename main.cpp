@@ -1,8 +1,8 @@
 #include "src/core/coloroptionenum.h"
 #include <QApplication>
+#include <QIcon>
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
-#include <QIcon>
 
 #include <src/systemtray.h>
 
@@ -11,9 +11,10 @@ int main(int argc, char *argv[])
     QApplication app(argc, argv);
     QQmlApplicationEngine engine;
 
-    qmlRegisterSingletonType<ColorOption>("OBSRecordingOverlay", 1, 0, "ColorOption", [](QQmlEngine *, QJSEngine *) -> QObject * {
-        return new ColorOption();
-    });
+    qmlRegisterSingletonType<ColorOption>(
+        "OBSRecordingOverlay", 1, 0, "ColorOption", [](QQmlEngine *, QJSEngine *) -> QObject * {
+            return new ColorOption();
+        });
     qmlRegisterSingletonType(QUrl("qrc:/qml/themes/Theme.qml"), "Theme", 1, 0, "Theme");
 
     SystemTray systemTray(&engine);

@@ -2,9 +2,9 @@
 #define SYSTEMTRAY_H
 
 #include <src/core/coloroptionenum.h>
+#include <QQmlEngine>
 #include <QSystemTrayIcon>
 #include <QWidget>
-#include <QQmlEngine>
 
 #include <src/utilities/thememanager.h>
 
@@ -26,8 +26,7 @@ private:
         QString buttonText = "Button",
         QString qrcIconSource = "",
         ColorOption::ColorOptionEnum color = ColorOption::Default,
-        const char* clickedSlot = nullptr
-    );
+        const char *clickedSlot = nullptr);
 
     QQmlEngine *qmlEngine;
     QSystemTrayIcon *trayIcon;

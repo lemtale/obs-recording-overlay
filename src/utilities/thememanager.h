@@ -4,7 +4,6 @@
 #include <QObject>
 #include <QQmlEngine>
 
-
 class ThemeManager : public QObject
 {
     Q_OBJECT

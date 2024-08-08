@@ -4,7 +4,9 @@
 #include <QQmlComponent>
 
 ThemeManager::ThemeManager(QQmlEngine *engine, QObject *parent)
-    : QObject(parent), qmlEngine(engine), themeObject(nullptr)
+    : QObject(parent)
+    , qmlEngine(engine)
+    , themeObject(nullptr)
 {
     QQmlComponent component(qmlEngine, QUrl(QStringLiteral("qrc:/qml/themes/Theme.qml")));
     themeObject = component.create();

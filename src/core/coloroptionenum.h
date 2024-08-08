@@ -3,16 +3,16 @@
 
 #include <QObject>
 
-class ColorOption : public QObject {
+class ColorOption : public QObject
+{
     Q_OBJECT
 
 public:
-    explicit ColorOption(QObject *parent = nullptr) : QObject(parent) {}
+    explicit ColorOption(QObject *parent = nullptr)
+        : QObject(parent)
+    {}
 
-    enum ColorOptionEnum {
-        Default,
-        Red
-    };
+    enum ColorOptionEnum { Default, Red };
     Q_ENUM(ColorOptionEnum)
 };
 

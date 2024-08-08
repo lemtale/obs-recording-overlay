@@ -1,21 +1,23 @@
 #include "systemtray.h"
 
 #include <QApplication>
+#include <QDebug>
 #include <QMenu>
-#include <QQmlEngine>
-#include <QWidgetAction>
-#include <QQuickWidget>
 #include <QPainter>
 #include <QPainterPath>
 #include <QQmlContext>
+#include <QQmlEngine>
 #include <QQuickItem>
-#include <QDebug>
+#include <QQuickWidget>
+#include <QWidgetAction>
 
 #include <src/core/coloroptionenum.h>
 
-
 SystemTray::SystemTray(QQmlEngine *engine, QWidget *parent)
-    : QWidget(parent), trayIcon(new QSystemTrayIcon(this)), trayIconMenu(new QMenu(this)), qmlEngine(engine)
+    : QWidget(parent)
+    , trayIcon(new QSystemTrayIcon(this))
+    , trayIconMenu(new QMenu(this))
+    , qmlEngine(engine)
 {
     themeManager = new ThemeManager(qmlEngine, this);
     setupTrayIcon();
@@ -47,31 +49,34 @@ void SystemTray::setupTrayStyles()
     int padding = themeManager->getIntProperty("spacingXXS");
     int borderRadius = themeManager->getIntProperty("radiusSM");
 
-    trayIconMenu->setStyleSheet(QString(
-        "QMenu { "
-        "    background-color: %1;"
-        "    border: 1px solid %2;"
-        "    border-radius: %3px;"
-        "    padding: %4px;"
-        "}"
-        "QMenu::item {"
-        "    background-color: %1;"
-        "    border-radius: %3px;"
-        "}"
-        "QMenu::separator {"
-        "    background-color: %2;"
-        "    height: 1px;"
-        "    margin: %4px 0px;"
-        "}"
-    ).arg(
-        backgroundColor.name(QColor::HexArgb),
-        borderColor.name(QColor::HexArgb),
-        QString::number(borderRadius),
-        QString::number(padding)
-    ));
+    QString stylesheet = QString("QMenu { "
+                                 "    background-color: %1;"
+                                 "    border: 1px solid %2;"
+                                 "    border-radius: %3px;"
+                                 "    padding: %4px;"
+                                 "}"
+                                 "QMenu::item {"
+                                 "    background-color: %1;"
+                                 "    border-radius: %3px;"
+                                 "}"
+                                 "QMenu::separator {"
+                                 "    background-color: %2;"
+                                 "    height: 1px;"
+                                 "    margin: %4px 0px;"
+                                 "}")
+                             .arg(
+                                 backgroundColor.name(QColor::HexArgb),
+                                 borderColor.name(QColor::HexArgb),
+                                 QString::number(borderRadius),
+                                 QString::number(padding));
+    trayIconMenu->setStyleSheet(stylesheet);
 }
 
-void SystemTray::addMenuAction(QString buttonText, QString qrcIconSource, ColorOption::ColorOptionEnum color, const char* clickedSlot)
+void SystemTray::addMenuAction(
+    QString buttonText,
+    QString qrcIconSource,
+    ColorOption::ColorOptionEnum color,
+    const char *clickedSlot)
 {
     QQuickWidget *view = new QQuickWidget;
     view->setSource(QUrl("qrc:/qml/Components/MenuItem.qml"));
