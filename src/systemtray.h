@@ -18,6 +18,7 @@ public:
 
 public slots:
     void quitApp();
+    void openConfigureConnectionDialog();
 
 private:
     void setupTrayIcon();

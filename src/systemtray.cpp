@@ -29,7 +29,11 @@ void SystemTray::setupTrayIcon()
 {
     addConnectionStatusItem();
     trayIconMenu->addSeparator();
-    addMenuAction("Configure Connection", "qrc:/resources/icons/settings-bolt.svg");
+    addMenuAction(
+        "Configure Connection",
+        "qrc:/resources/icons/settings-bolt.svg",
+        ColorOption::Default,
+        SLOT(openConfigureConnectionDialog()));
     trayIconMenu->addSeparator();
     addMenuAction("Exit", "qrc:/resources/icons/power.svg", ColorOption::Red, SLOT(quitApp()));
 
@@ -118,4 +122,10 @@ void SystemTray::addConnectionStatusItem()
 void SystemTray::quitApp()
 {
     qApp->quit();
+}
+
+void SystemTray::openConfigureConnectionDialog()
+{
+    qDebug() << "Opening dialog";
+    trayIconMenu->hide();
 }
