@@ -27,6 +27,7 @@ private:
         QString qrcIconSource = "",
         ColorOption::ColorOptionEnum color = ColorOption::Default,
         const char *clickedSlot = nullptr);
+    void addConnectionStatusItem();
 
     QQmlEngine *qmlEngine;
     QSystemTrayIcon *trayIcon;

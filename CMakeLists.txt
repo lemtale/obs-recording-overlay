@@ -18,6 +18,7 @@ set(ASSETS
     assets/images/record-icon.png
     assets/icons/power.svg
     assets/icons/settings-bolt.svg
+    assets/icons/circle.svg
 )
 
 set(PROJECT_SOURCES
@@ -36,6 +37,7 @@ set(QML
     themes/Theme.qml
     qml/main.qml
     qml/Components/MenuItem.qml
+    qml/Components/ConnectionStatus.qml
 )
 
 set(RESOURCES

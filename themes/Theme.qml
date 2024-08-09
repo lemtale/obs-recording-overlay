@@ -15,6 +15,8 @@ QtObject {
     readonly property color red6: "#FA5252"
     readonly property color redLightHover: "#33FA5252"
 
+    readonly property color green6: "#40C057"
+
     property alias colorText: theme.dark0
     property alias colorDimmed: theme.dark2
 

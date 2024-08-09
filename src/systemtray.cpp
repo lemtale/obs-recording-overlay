@@ -27,6 +27,8 @@ SystemTray::~SystemTray() {}
 
 void SystemTray::setupTrayIcon()
 {
+    addConnectionStatusItem();
+    trayIconMenu->addSeparator();
     addMenuAction("Configure Connection", "qrc:/resources/icons/settings-bolt.svg");
     trayIconMenu->addSeparator();
     addMenuAction("Exit", "qrc:/resources/icons/power.svg", ColorOption::Red, SLOT(quitApp()));
@@ -99,6 +101,18 @@ void SystemTray::addMenuAction(
             connect(rootObject, SIGNAL(onClick()), this, clickedSlot);
         }
     }
+}
+
+void SystemTray::addConnectionStatusItem()
+{
+    QQuickWidget *view = new QQuickWidget;
+    view->setSource(QUrl("qrc:/qml/Components/ConnectionStatus.qml"));
+    view->setMinimumSize(200, 32);
+    view->setResizeMode(QQuickWidget::SizeRootObjectToView);
+
+    QWidgetAction *widgetAction = new QWidgetAction(trayIconMenu);
+    widgetAction->setDefaultWidget(view);
+    trayIconMenu->addAction(widgetAction);
 }
 
 void SystemTray::quitApp()
